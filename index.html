@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backtrack — WHV Australia Day Tracker</title>
+  <meta name="description" content="Track your 88 days, your pay and your super. The essential app for Working Holiday Visa holders in Australia." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+      --green-border: #bbf7d0;
+      --gray-900: #111827;
+      --gray-600: #4b5563;
+      --gray-400: #9ca3af;
+      --gray-100: #f3f4f6;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--gray-900);
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--green);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+    }
+    nav a.app-store-btn {
+      background: var(--gray-900);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--green-light);
+      color: var(--green);
+      border: 1px solid var(--green-border);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: clamp(36px, 6vw, 60px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    h1 span { color: var(--green); }
+    .hero p {
+      font-size: 18px;
+      color: var(--gray-600);
+      max-width: 540px;
+      margin: 0 auto 36px;
+    }
+    .cta-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--green);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-secondary {
+      background: var(--gray-100);
+      color: var(--gray-900);
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .coming-soon {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-top: 12px;
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 80px 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .section-label {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      margin-bottom: 48px;
+      letter-spacing: -0.5px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--gray-100);
+      border-radius: 20px;
+      padding: 32px;
+    }
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .feature-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .feature-card p {
+      font-size: 15px;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* VISA SECTION */
+    .visa-section {
+      background: var(--green-light);
+      border-top: 1px solid var(--green-border);
+      border-bottom: 1px solid var(--green-border);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .visa-section h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .visa-section p {
+      font-size: 16px;
+      color: var(--gray-600);
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+    .visa-pills {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .pill {
+      background: white;
+      border: 1px solid var(--green-border);
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-weight: 700;
+      color: var(--green);
+      font-size: 15px;
+    }
+    .pill span {
+      display: block;
+      font-size: 12px;
+      color: var(--gray-400);
+      font-weight: 400;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 13px;
+      color: var(--gray-400);
+    }
+    footer a {
+      color: var(--gray-400);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .hero { padding: 60px 20px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo">
+      <div class="logo-icon">🎒</div>
+      Backtrack
+    </a>
+    <a href="#" class="app-store-btn">Coming soon</a>
+  </nav>
+
+  <section class="hero">
+    <div class="badge">🇦🇺 For WHV holders in Australia</div>
+    <h1>Track your <span>88 days</span>.<br>Know your money.</h1>
+    <p>The essential companion for Working Holiday Visa holders. Count your regional work days, track your pay and recover your superannuation before you leave.</p>
+    <div class="cta-group">
+      <a href="#" class="btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on App Store
+      </a>
+    </div>
+    <p class="coming-soon">Available soon on iOS</p>
+  </section>
+
+  <section class="features">
+    <p class="section-label">Features</p>
+    <h2 class="section-title">Everything you need for your WHV</h2>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3>Visa Day Counter</h3>
+        <p>Track your regional work days in real time. Know exactly where you stand toward your 88-day (2nd year) or 179-day (3rd year) requirement — no spreadsheets needed.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Financial Dashboard</h3>
+        <p>Log your gross pay per work day. Backtrack automatically calculates your superannuation and shows you exactly how much you'll recover via DASP before leaving Australia.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🗺️</div>
+        <h3>Regional Employer Map</h3>
+        <p>Find verified farms and employers in eligible postcode zones. Filter by region, job type and state. Know which employers count toward your visa before you move.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="visa-section">
+    <h2>Built for both WHV paths</h2>
+    <p>Whether you're going for your 2nd or 3rd year, Backtrack adapts your counter and targets automatically.</p>
+    <div class="visa-pills">
+      <div class="pill">
+        88 days
+        <span>2nd year visa (WHV 1)</span>
+      </div>
+      <div class="pill">
+        179 days
+        <span>3rd year visa (WHV 2)</span>
+      </div>
+      <div class="pill">
+        Visa 417 &amp; 462
+        <span>Both visa types supported</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Backtrack · <a href="/privacy.html">Privacy Policy</a> · <a href="mailto:mathieu.jannolfo2@gmail.com">Support</a></p>
+  </footer>
+
+</body>
+</html>
