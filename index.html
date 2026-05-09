@@ -25,6 +25,9 @@
       line-height: 1.6;
     }
 
+    html[lang="en"] .fr { display: none; }
+    html[lang="fr"] .en { display: none; }
+
     /* NAV */
     nav {
       display: flex;
@@ -54,6 +57,23 @@
       height: 100%;
       display: block;
     }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      padding: 7px 13px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--gray-600);
+      transition: background 0.15s;
+    }
+    .lang-btn:hover { background: var(--gray-100); }
     nav a.app-store-btn {
       background: var(--gray-900);
       color: #fff;
@@ -92,7 +112,7 @@
       letter-spacing: -1.5px;
       margin-bottom: 20px;
     }
-    h1 span { color: var(--green); }
+    h1 .accent { color: var(--green); }
     .hero-text p {
       font-size: 17px;
       color: var(--gray-600);
@@ -178,7 +198,7 @@
     }
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
     .feature-card {
@@ -244,7 +264,7 @@
       color: var(--green);
       font-size: 15px;
     }
-    .pill span { display: block; font-size: 12px; color: var(--gray-400); font-weight: 400; }
+    .pill .sub { display: block; font-size: 12px; color: var(--gray-400); font-weight: 400; }
 
     /* FOOTER */
     footer {
@@ -275,21 +295,36 @@
       <div class="logo-icon"><img src="/icon.png" alt="Backtrack" /></div>
       Backtrack
     </a>
-    <a href="https://apps.apple.com/app/id6763726493" class="app-store-btn">Download on App Store</a>
+    <div class="nav-actions">
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">FR</button>
+      <a href="https://apps.apple.com/app/id6763726493" class="app-store-btn">Download on App Store</a>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-text">
-      <div class="badge">🇦🇺 For WHV holders in Australia</div>
-      <h1>Track your <span>88 days</span>.<br>Know your money.</h1>
-      <p>The essential companion for Working Holiday Visa holders. Count your regional work days, track your pay and recover your superannuation before you leave.</p>
+      <div class="badge">
+        <span class="en">🇦🇺 For WHV holders in Australia</span>
+        <span class="fr">🇦🇺 Pour les titulaires de WHV en Australie</span>
+      </div>
+      <h1>
+        <span class="en">Track your <span class="accent">88 days</span>.<br>Know your money.</span>
+        <span class="fr">Suis tes <span class="accent">88 jours</span>.<br>Connais ton argent.</span>
+      </h1>
+      <p>
+        <span class="en">The essential companion for Working Holiday Visa holders. Count your regional work days, track your pay and recover your superannuation before you leave.</span>
+        <span class="fr">L'application indispensable pour les titulaires de Working Holiday Visa. Compte tes jours de travail régionaux, suis ta paie et récupère ta superannuation avant de partir.</span>
+      </p>
       <div class="cta-group">
         <a href="https://apps.apple.com/app/id6763726493" class="btn-primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           Download on App Store
         </a>
-        <span class="coming-soon">Free · iOS</span>
+        <span class="coming-soon">
+          <span class="en">Free · iOS</span>
+          <span class="fr">Gratuit · iOS</span>
+        </span>
       </div>
     </div>
 
@@ -309,26 +344,62 @@
 
   <!-- FEATURES -->
   <section class="features">
-    <p class="section-label">Features</p>
-    <h2 class="section-title">Everything you need for your WHV</h2>
+    <p class="section-label">
+      <span class="en">Features</span>
+      <span class="fr">Fonctionnalités</span>
+    </p>
+    <h2 class="section-title">
+      <span class="en">Everything you need for your WHV</span>
+      <span class="fr">Tout ce qu'il te faut pour ton WHV</span>
+    </h2>
     <div class="features-grid">
 
       <div class="feature-card">
         <div class="feature-icon">📅</div>
-        <h3>Visa Day Counter</h3>
-        <p>Track your regional work days in real time. Know exactly where you stand toward your 88-day or 179-day requirement — no spreadsheets needed.</p>
+        <h3>
+          <span class="en">Visa Day Counter</span>
+          <span class="fr">Compteur de Jours Visa</span>
+        </h3>
+        <p>
+          <span class="en">Track your regional work days in real time. Know exactly where you stand toward your 88-day or 179-day requirement — no spreadsheets needed.</span>
+          <span class="fr">Suis tes jours de travail régionaux en temps réel. Sache exactement où tu en es par rapport à tes 88 ou 179 jours — sans tableur.</span>
+        </p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">💰</div>
-        <h3>Financial Dashboard</h3>
-        <p>Log your gross pay per work day. Backtrack automatically calculates your superannuation and shows you exactly how much you'll recover via DASP before leaving Australia.</p>
+        <h3>
+          <span class="en">Financial Dashboard</span>
+          <span class="fr">Tableau de Bord Financier</span>
+        </h3>
+        <p>
+          <span class="en">Log your gross pay per work day. Backtrack automatically calculates your superannuation and shows you exactly how much you'll recover via DASP before leaving Australia.</span>
+          <span class="fr">Enregistre ton salaire brut par jour travaillé. Backtrack calcule automatiquement ta superannuation et te montre exactement ce que tu récupéreras via le DASP avant de partir.</span>
+        </p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">🗺️</div>
-        <h3>Regional Employer Map</h3>
-        <p>Find verified farms and employers in eligible postcode zones. Filter by region, job type and state. Know which employers count toward your visa.</p>
+        <h3>
+          <span class="en">Regional Employer Map</span>
+          <span class="fr">Carte des Employeurs Régionaux</span>
+        </h3>
+        <p>
+          <span class="en">Find verified farms and employers in eligible postcode zones. Filter by region, job type and state. Know which employers count toward your visa.</span>
+          <span class="fr">Trouve des fermes et employeurs vérifiés dans les zones postales éligibles. Filtre par région, type de poste et état. Sache quels employeurs comptent pour ton visa.</span>
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🧾</div>
+        <h3>
+          <span class="en">Payslip Scanner</span>
+          <span class="fr">Scanner de Fiches de Paie</span>
+        </h3>
+        <p>
+          <span class="en">Scan your payslips with AI. Backtrack automatically extracts your gross pay, employer and work dates — no manual entry needed.</span>
+          <span class="fr">Scanne tes fiches de paie avec l'IA. Backtrack extrait automatiquement ton salaire brut, ton employeur et tes dates de travail — zéro saisie manuelle.</span>
+        </p>
       </div>
 
     </div>
@@ -336,8 +407,14 @@
 
   <!-- SCREENSHOTS -->
   <section class="screens-section">
-    <p class="section-label">See it in action</p>
-    <h2 class="section-title">Built for life on the road</h2>
+    <p class="section-label">
+      <span class="en">See it in action</span>
+      <span class="fr">En action</span>
+    </p>
+    <h2 class="section-title">
+      <span class="en">Built for life on the road</span>
+      <span class="fr">Conçu pour la vie sur la route</span>
+    </h2>
     <div class="screens-row">
 
       <div class="screen-item">
@@ -346,8 +423,14 @@
             <img src="/screenshots/screen-map.png" alt="Farm Map" />
           </div>
         </div>
-        <strong>Farm Map</strong>
-        <p>1,779 verified employers across Australia</p>
+        <strong>
+          <span class="en">Farm Map</span>
+          <span class="fr">Carte des Fermes</span>
+        </strong>
+        <p>
+          <span class="en">1,779 verified employers across Australia</span>
+          <span class="fr">1 779 employeurs vérifiés en Australie</span>
+        </p>
       </div>
 
       <div class="screen-item">
@@ -356,8 +439,14 @@
             <img src="/screenshots/screen-dashboard.png" alt="Dashboard" />
           </div>
         </div>
-        <strong>My Days</strong>
-        <p>Day counter + pay + DASP super</p>
+        <strong>
+          <span class="en">My Days</span>
+          <span class="fr">Mes Jours</span>
+        </strong>
+        <p>
+          <span class="en">Day counter + pay + DASP super</span>
+          <span class="fr">Compteur + paie + super DASP</span>
+        </p>
       </div>
 
       <div class="screen-item">
@@ -366,8 +455,14 @@
             <img src="/screenshots/screen-farms.png" alt="Farm list" />
           </div>
         </div>
-        <strong>Employer List</strong>
-        <p>Filter by city, job type & visa</p>
+        <strong>
+          <span class="en">Employer List</span>
+          <span class="fr">Liste d'Employeurs</span>
+        </strong>
+        <p>
+          <span class="en">Filter by city, job type &amp; visa</span>
+          <span class="fr">Filtrez par ville, type de poste &amp; visa</span>
+        </p>
       </div>
 
     </div>
@@ -375,18 +470,45 @@
 
   <!-- VISA -->
   <section class="visa-section">
-    <h2>Built for both WHV paths</h2>
-    <p>Whether you're going for your 2nd or 3rd year, Backtrack adapts your counter and targets automatically.</p>
+    <h2>
+      <span class="en">Built for both WHV paths</span>
+      <span class="fr">Conçu pour les deux voies WHV</span>
+    </h2>
+    <p>
+      <span class="en">Whether you're going for your 2nd or 3rd year, Backtrack adapts your counter and targets automatically.</span>
+      <span class="fr">Que tu vises ta 2ème ou 3ème année, Backtrack adapte ton compteur et tes objectifs automatiquement.</span>
+    </p>
     <div class="visa-pills">
-      <div class="pill">88 days <span>2nd year visa (WHV 1)</span></div>
-      <div class="pill">179 days <span>3rd year visa (WHV 2)</span></div>
-      <div class="pill">Visa 417 &amp; 462 <span>Both visa types supported</span></div>
+      <div class="pill">
+        <span class="en">88 days <span class="sub">2nd year visa (WHV 1)</span></span>
+        <span class="fr">88 jours <span class="sub">Visa 2ème année (WHV 1)</span></span>
+      </div>
+      <div class="pill">
+        <span class="en">179 days <span class="sub">3rd year visa (WHV 2)</span></span>
+        <span class="fr">179 jours <span class="sub">Visa 3ème année (WHV 2)</span></span>
+      </div>
+      <div class="pill">
+        <span class="en">Visa 417 &amp; 462 <span class="sub">Both visa types supported</span></span>
+        <span class="fr">Visa 417 &amp; 462 <span class="sub">Les deux types de visa supportés</span></span>
+      </div>
     </div>
   </section>
 
   <footer>
-    <p>© 2026 Backtrack · <a href="/privacy">Privacy Policy</a> · <a href="mailto:mathieu.jannolfo2@gmail.com">Support</a></p>
+    <p>
+      <span class="en">© 2026 Backtrack · <a href="/privacy">Privacy Policy</a> · <a href="mailto:mathieu.jannolfo2@gmail.com">Support</a></span>
+      <span class="fr">© 2026 Backtrack · <a href="/privacy">Politique de Confidentialité</a> · <a href="mailto:mathieu.jannolfo2@gmail.com">Support</a></span>
+    </p>
   </footer>
+
+  <script>
+    function toggleLang() {
+      const html = document.documentElement;
+      const isEN = html.lang === 'en';
+      html.lang = isEN ? 'fr' : 'en';
+      document.getElementById('langBtn').textContent = isEN ? 'EN' : 'FR';
+    }
+  </script>
 
 </body>
 </html>
